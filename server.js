@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const generateId = require('./lib/generate-id');
+const Poll = require('./lib/poll');
 
 const path = require('path');
 
@@ -23,8 +24,10 @@ app.get('/', (request, response) => {
 app.post('/polls', (request, response) => {
   var id = generateId();
 
+  var aPoll = new Poll(id, {a:0, b:5}, true)
+
   app.locals.polls[id] = request.body;
-  console.log(request.body, request.body.length)
+  console.log(aPoll);
 
   response.sendStatus(201);
 });
