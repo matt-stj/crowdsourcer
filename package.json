@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/matt-stj/crowdsourcer#readme",
   "dependencies": {
+    "ejs": "^2.4.1",
     "express": "^4.13.4"
   },
   "devDependencies": {
