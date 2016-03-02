@@ -1,0 +1,31 @@
+{
+  "name": "crowdsourcer",
+  "version": "1.0.0",
+  "description": "Build real-time polls!",
+  "main": "server.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/matt-stj/crowdsourcer.git"
+  },
+  "keywords": [
+    "poll",
+    "survey",
+    "real-time",
+    "web-sockets"
+  ],
+  "author": "Matt Stjernholm",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/matt-stj/crowdsourcer/issues"
+  },
+  "homepage": "https://github.com/matt-stj/crowdsourcer#readme",
+  "dependencies": {
+    "express": "^4.13.4"
+  },
+  "devDependencies": {
+    "mocha": "^2.4.5"
+  }
+}
