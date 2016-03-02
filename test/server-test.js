@@ -42,6 +42,10 @@ describe('Server', () => {
 
   describe('POST /polls', () => {
 
+    beforeEach(() => {
+      app.locals.pizzas = {};
+    });
+
     it('should not return 404', (done) => {
       this.request.post('/polls', (error, response) => {
         if (error) { done(error); }
@@ -49,6 +53,24 @@ describe('Server', () => {
         done();
       });
     });
+
+    it('should receive a poll and store it', (done) => {
+      var validPoll = {
+        poll: {
+          id: '12345678',
+          results: { A:1, B:2, C:3, D:4 },
+          active: true
+        }
+      }
+
+      this.request.post('/polls', { form: validPoll }, (error, response) => {
+        if (error) { done(error); }
+
+        var pollCount = Object.keys(app.locals.polls).length;
+        assert.equal(pollCount, 1, `Expected 1 poll, found ${pollCount}`);
+      })
+    });
+
   });
 
 });
