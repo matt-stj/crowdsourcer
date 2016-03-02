@@ -23,7 +23,9 @@ describe('Server', () => {
     assert(app);
   });
 
-  it('should return a 200', (done) => {
+  describe('GET /', () => {
+
+  it('should return a 200 for home page', (done) => {
     this.request.get('/', (error, response) => {
       if (error) { done(error); }
       assert.equal(response.statusCode, 200);
@@ -41,6 +43,8 @@ describe('Server', () => {
       done();
     });
   });
+
+});
 
   describe('POST /polls', () => {
 

@@ -1,8 +1,10 @@
+const http = require('http');
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const generateId = require('./lib/generate-id');
 const Poll = require('./lib/poll');
+const socketIo = require('socket.io');
 
 const path = require('path');
 
@@ -12,6 +14,12 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.set('view engine', 'ejs');
 app.set('port', process.env.PORT || 3000);
+
+const server = http.createServer(app).listen(app.port, function() {
+                   console.log('Listening on port ' + app.port + '.');
+                 });
+
+const io = socketIo(server);
 
 app.locals.title = 'Crowdsourcer';
 app.locals.polls = {};
@@ -23,13 +31,12 @@ app.get('/', (request, response) => {
 
 app.post('/polls', (request, response) => {
   var id = generateId();
-
-  var aPoll = new Poll(id, {a:0, b:5}, true)
-
+  console.log(request.body['poll-title'])
+  console.log(request.body['choice-1'])
+  console.log(request.body['choice-2'])
   app.locals.polls[id] = request.body;
-  console.log(aPoll);
 
-  response.sendStatus(201);
+  response.redirect('/');
 });
 
 if (!module.parent) {
