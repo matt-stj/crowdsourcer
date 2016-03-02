@@ -1,6 +1,8 @@
 const assert = require('assert');
 const request = require('request');
 const app = require('../server');
+const Poll = require('../lib/poll');
+
 
 describe('Server', () => {
 
@@ -54,14 +56,8 @@ describe('Server', () => {
       });
     });
 
-    it('should receive a poll and store it', (done) => {
-      var validPoll = {
-        poll: {
-          id: '12345678',
-          results: { A:1, B:2, C:3, D:4 },
-          active: true
-        }
-      }
+    xit('should receive a poll and store it', (done) => {
+      var validPoll = new Poll(12345, {a:0, b:1 }, true)
 
       this.request.post('/polls', { form: validPoll }, (error, response) => {
         if (error) { done(error); }
