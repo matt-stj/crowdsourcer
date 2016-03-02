@@ -40,4 +40,15 @@ describe('Server', () => {
     });
   });
 
+  describe('POST /polls', () => {
+
+    it('should not return 404', (done) => {
+      this.request.post('/polls', (error, response) => {
+        if (error) { done(error); }
+        assert.notEqual(response.statusCode, 404);
+        done();
+      });
+    });
+  });
+
 });
