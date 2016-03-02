@@ -25,7 +25,9 @@
   "dependencies": {
     "body-parser": "^1.15.0",
     "ejs": "^2.4.1",
-    "express": "^4.13.4"
+    "express": "^4.13.4",
+    "lodash": "^4.6.1",
+    "socket.io": "^1.4.5"
   },
   "devDependencies": {
     "mocha": "^2.4.5",
