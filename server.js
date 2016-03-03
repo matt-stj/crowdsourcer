@@ -38,11 +38,11 @@ app.get('/polls/:id', (request, response) => {
 app.get('/polls/:adminKey/:id', (request, response) => {
   var poll = app.locals.polls[request.params.id];
 
+  console.log(poll)
   response.render('pages/admin-poll', { poll: poll });
 });
 
 app.post('/polls', (request, response) => {
-  console.log(request.body)
   var adminKey = generateId(3);
   var id = generateId(10);
 
