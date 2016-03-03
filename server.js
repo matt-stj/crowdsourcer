@@ -62,6 +62,16 @@ app.post('/polls', (request, response) => {
   response.render('pages/admin-links', { poll: newPoll });
 });
 
+io.on('connection', function (socket) {
+  console.log('A user has connected.', io.engine.clientsCount);
+
+  socket.emit('statusMessage', 'You have connected.');
+
+  socket.on('disconnect', function () {
+    console.log('A user has disconnected.', io.engine.clientsCount);
+  });
+});
+
 if (!module.parent) {
   app.listen(app.get('port'), () => {
     console.log(`${app.locals.title} is running on ${port}.`);
