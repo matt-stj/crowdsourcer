@@ -15,11 +15,22 @@
       <h4>Poll Title: <%= poll.title %></h4>
       <h5>Question: <%= poll.question %></h5>
 
-    <div class="container">
-      <% if (!poll.isPrivate) {%>
-        <% include ../partials/poll-results %>
+      <h5>Choices:</h5>
+
+      <% for (var choice in poll.choices) {%>
+        <% if (poll.choices.hasOwnProperty(choice)) {%>
+          <button type="button" name="button" class="btn-floating btn-large waves-effect waves-light">
+            <%= choice %>
+          </button>
+        <% } %>
       <% } %>
-    </div>
+
+
+      <% if (!poll.isPrivate) {%>
+        <div class="container">
+          <% include ../partials/poll-results %>
+        </div>
+      <% } %>
     </body>
   </main>
   <footer>
