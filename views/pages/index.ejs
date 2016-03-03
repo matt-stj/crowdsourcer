@@ -43,10 +43,12 @@
         <button type="button" name="add-choice" onClick="addItem()" class="btn-floating btn-small waves-effect waves-light green">
           +
         </button>
+        <br>
             <div class="row">
-                <label for="poll[expiration]">Expires on (optional)</label>
                 <input type="date" name="poll[expiration]" class="datepicker">
+                <label for="poll[expiration]">Expires on (optional)</label>
             </div>
+            <br>
             <div class="row">
             <div class="switch">
               <label for="poll[isPrivate]">Should the results of this poll be hidden from users?</label><br>
@@ -58,6 +60,7 @@
               </label>
             </div>
           </div>
+          <br>
           <button class="btn waves-effect waves-light" type="submit">Submit</button>
         </form>
       </div>
