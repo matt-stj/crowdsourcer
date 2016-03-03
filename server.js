@@ -35,10 +35,16 @@ app.get('/polls/:id', (request, response) => {
   response.render('user-poll', { poll: poll });
 });
 
+app.get('/polls/:adminKey/:id', (request, response) => {
+  var poll = app.locals.polls[request.params.id];
+
+  response.render('admin-poll', { poll: poll });
+});
+
 app.post('/polls', (request, response) => {
   var pollData = request.body.poll
 
-  var adminKey = generateId(5);
+  var adminKey = generateId(3);
   var id = generateId(10);
   var title = pollData.title
   var question = pollData.question
@@ -48,11 +54,11 @@ app.post('/polls', (request, response) => {
     choices[response] = 0
   })
 
-  var newPoll = new Poll(id, title, question, choices, true)
+  var newPoll = new Poll(id, adminKey, title, question, choices, true)
   app.locals.polls[newPoll.id] = newPoll
 
   console.log(newPoll)
-  response.redirect('/');
+  response.render('pages/admin-links', { poll: newPoll });
 });
 
 if (!module.parent) {
