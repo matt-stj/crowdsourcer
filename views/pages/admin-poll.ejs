@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <% include ../partials/head %>
+</head>
+
+<header>
+  <% include ../partials/header %>
+</header>
+
+<main>
+    <body class="center">
+      <h5>Admin Poll Page</h5>
+      <% if (poll.title) { %>
+        <h3>Poll Title: <%= poll.title %></h3>
+      <% } %>
+      <% if (poll.question) { %>
+        <h4>Question: <%= poll.question %></h4>
+      <% } %>
+      <br>
+      <h5>Poll Results:</h5>
+      <div class="container centered center align-center">
+
+      <table class="striped centered">
+                    <thead>
+                      <tr>
+                          <th>Choice</th>
+                          <th>Count</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <% for (var choice in poll.choices) {%>
+                        <% if (poll.choices.hasOwnProperty(choice)) {%>
+                          <tr>
+                            <td><%= choice %></td>
+                            <td><%= poll.choices[choice] %></td>
+                        <% } %>
+                      <% } %>
+                          </tr>
+                    </tbody>
+                  </table>
+                </div>
+        <br>
+        <% if (poll.expiration) { %>
+          <h5>Expires: <%= poll.expiration %></h5>
+        <% } %>
+        <br>
+      <button type="button" name="button" class="btn red darken-2">End Poll</button>
+      <br><br>
+    </body>
+  </main>
+  <footer>
+    <% include ../partials/footer %>
+  </footer>
+
+
+</html>
