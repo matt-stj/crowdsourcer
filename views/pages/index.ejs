@@ -26,6 +26,7 @@
               <label for="poll[question]">Poll Question</label>
             </div>
           </div>
+          <div class="responses">
           <div class="row">
             <div class="input-field col s12">
               <input name="poll[responses][]" id="choice1" type="text" >
@@ -38,6 +39,10 @@
               <label for="poll[responses][]">Choice 2</label>
             </div>
           </div>
+        </div>
+        <button type="button" name="add-choice" onClick="addItem()" class="btn-floating btn-small waves-effect waves-light green">
+          +
+        </button>
             <div class="row">
                 <label for="poll[expiration]">Expires on (optional)</label>
                 <input type="date" name="poll[expiration]" class="datepicker">
@@ -62,6 +67,21 @@
   </main>
   <footer>
     <% include ../partials/footer %>
+    <script type="text/javascript">
+    var i = 3
+      function addItem(){
+        $('.responses').append(
+          `<div class="row">
+            <div class="input-field col s12">
+              <input name="poll[responses][]" id="choice${i}" type="text">
+              <label for="poll[responses][]">Choice ${i}</label>
+            </div>
+          </div>`
+        )
+        i++
+        console.log(i)
+      }
+    </script>
   </footer>
 
 
