@@ -17,7 +17,6 @@ socket.on('voteCount', function (poll) {
   var i = 1
   for (var choice in poll.choices) {
     $(`#${poll.id}-${i}`).text(`${poll.choices[choice]}`)
-    console.log(poll.choices[choice])
     i++
 };
 });

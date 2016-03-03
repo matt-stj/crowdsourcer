@@ -100,7 +100,7 @@ io.on('connection', function (socket) {
       var poll = app.locals.polls[pollId]
       poll.choices[vote]++
 
-      socket.emit('voteCount', poll);
+      io.sockets.emit('voteCount', poll);
     }
   });
 
