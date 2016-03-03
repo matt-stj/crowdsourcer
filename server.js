@@ -4,22 +4,21 @@ const app = express();
 const bodyParser = require('body-parser');
 const generateId = require('./lib/generate-id');
 const Poll = require('./lib/poll');
-const socketIo = require('socket.io');
-
 const path = require('path');
+const port = process.env.PORT || 3000;
+const server = http.createServer(app)
+                 server.listen(port, function () {
+                    console.log('Listening on port ' + port + '.');
+                  });
+
+const socketIo = require('socket.io');
+const io = socketIo(server);
 
 app.use(express.static('public'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.set('view engine', 'ejs');
-app.set('port', process.env.PORT || 3000);
-
-const server = http.createServer(app).listen(app.port, function() {
-                   console.log('Listening on port ' + app.get('port') + '.');
-                 });
-
-const io = socketIo(server);
 
 app.locals.title = 'Crowdsourcer';
 app.locals.polls = {};
@@ -65,7 +64,7 @@ app.post('/polls', (request, response) => {
 
 if (!module.parent) {
   app.listen(app.get('port'), () => {
-    console.log(`${app.locals.title} is running on ${app.get('port')}.`);
+    console.log(`${app.locals.title} is running on ${port}.`);
   });
 }
 
