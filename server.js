@@ -31,14 +31,13 @@ app.get('/', (request, response) => {
 
 app.get('/polls/:id', (request, response) => {
   var poll = app.locals.polls[request.params.id];
-  console.log(poll)
+
   response.render('pages/user-poll', { poll: poll });
 });
 
 app.get('/polls/:adminKey/:id', (request, response) => {
   var poll = app.locals.polls[request.params.id];
 
-  console.log(poll)
   response.render('pages/admin-poll', { poll: poll });
 });
 

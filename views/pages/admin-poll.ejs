@@ -20,26 +20,8 @@
       <br>
       <h5>Poll Results:</h5>
       <div class="container centered center align-center">
-
-      <table class="striped centered">
-                    <thead>
-                      <tr>
-                          <th>Choice</th>
-                          <th>Count</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <% for (var choice in poll.choices) {%>
-                        <% if (poll.choices.hasOwnProperty(choice)) {%>
-                          <tr>
-                            <td><%= choice %></td>
-                            <td><%= poll.choices[choice] %></td>
-                        <% } %>
-                      <% } %>
-                          </tr>
-                    </tbody>
-                  </table>
-                </div>
+        <% include ../partials/poll-results %>
+      </div>
         <br>
         <% if (poll.expiration) { %>
           <h5>Expires: <%= poll.expiration %></h5>
