@@ -30,11 +30,13 @@
                     </thead>
                     <tbody>
                       <% for (var choice in poll.choices) {%>
-                      <tr>
-                          <td><%= choice %></td>
-                          <td><%= poll.choices[choice] %></td>
+                        <% if (poll.choices.hasOwnProperty(choice)) {%>
+                          <tr>
+                            <td><%= choice %></td>
+                            <td><%= poll.choices[choice] %></td>
                         <% } %>
-                      </tr>
+                      <% } %>
+                          </tr>
                     </tbody>
                   </table>
                 </div>
@@ -46,10 +48,10 @@
       <button type="button" name="button" class="btn red darken-2">End Poll</button>
       <br><br>
     </body>
-    <footer>
-      <% include ../partials/footer %>
-    </footer>
   </main>
+  <footer>
+    <% include ../partials/footer %>
+  </footer>
 
 
 </html>
