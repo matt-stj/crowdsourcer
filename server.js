@@ -42,10 +42,11 @@ app.get('/polls/:adminKey/:id', (request, response) => {
 });
 
 app.post('/polls', (request, response) => {
-  var pollData = request.body.poll
-
+  console.log(request.body)
   var adminKey = generateId(3);
   var id = generateId(10);
+
+  var pollData = request.body.poll
   var title = pollData.title
   var question = pollData.question
   var choices = {}
@@ -60,7 +61,6 @@ app.post('/polls', (request, response) => {
 
   app.locals.polls[newPoll.id] = newPoll
 
-  console.log(newPoll)
   response.render('pages/admin-links', { poll: newPoll });
 });
 

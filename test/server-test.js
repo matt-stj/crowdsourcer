@@ -49,7 +49,7 @@ describe('Server', () => {
   describe('POST /polls', () => {
 
     beforeEach(() => {
-      app.locals.pizzas = {};
+      app.locals.polls = {};
     });
 
     it('should not return 404', (done) => {
@@ -61,7 +61,12 @@ describe('Server', () => {
     });
 
     it('should receive a poll and store it', (done) => {
-      var validPollData = { poll: { title: 'asd', responses: [ 'fdas', 'asdf' ] } }
+      var validPollData = { poll:
+                           { title: 'Title',
+                             question: 'Que',
+                             responses: [ '1', '2' ],
+                             expiration: '2016-03-10',
+                             isPrivate: 'true' } }
 
       this.request.post('/polls', { form: validPollData }, (error, response) => {
         if (error) { done(error); }
