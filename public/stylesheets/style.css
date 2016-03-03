@@ -11,3 +11,7 @@ main {
 #statusMessage {
   color: white;
 }
+
+.btn {
+  text-transform: none;
+}

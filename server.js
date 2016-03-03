@@ -22,6 +22,19 @@ app.set('view engine', 'ejs');
 
 app.locals.title = 'Crowdsourcer';
 app.locals.polls = {};
+var votes = {}
+
+// function countVotes(pollId, votes) {
+//   console.log("PollId in countVotes:" + pollId)
+//   // var poll = app.locals.polls[pollId]
+//   //
+//   // var pollCount = poll.choices
+//   //
+//   // for (var vote in votes) {
+//   //   pollCount[votes[vote]]++
+//   // }
+//   // return pollCount;
+// }
 
 
 app.get('/', (request, response) => {
@@ -66,6 +79,23 @@ io.on('connection', function (socket) {
   console.log('A user has connected.', io.engine.clientsCount);
 
   socket.emit('statusMessage', 'You have connected.');
+
+  socket.on('message', function (channel, message) {
+    if (channel === 'voteCast') {
+      var pollId = message.pollId
+      var vote = message.vote
+
+      var poll = app.locals.polls[pollId]
+
+      console.log(poll.choices)
+      console.log(vote)
+      console.log(poll.choices[vote])
+      poll.choices[vote]++
+      console.log(poll.choices)
+
+      // socket.emit('voteCount', countVotes(votes));
+    }
+  });
 
   socket.on('disconnect', function () {
     console.log('A user has disconnected.', io.engine.clientsCount);
