@@ -23,7 +23,9 @@ describe('Server', () => {
     assert(app);
   });
 
-  it('should return a 200', (done) => {
+  describe('GET /', () => {
+
+  it('should return a 200 for home page', (done) => {
     this.request.get('/', (error, response) => {
       if (error) { done(error); }
       assert.equal(response.statusCode, 200);
@@ -42,6 +44,8 @@ describe('Server', () => {
     });
   });
 
+});
+
   describe('POST /polls', () => {
 
     beforeEach(() => {
@@ -56,14 +60,15 @@ describe('Server', () => {
       });
     });
 
-    xit('should receive a poll and store it', (done) => {
-      var validPoll = new Poll(12345, {a:0, b:1 }, true)
+    it('should receive a poll and store it', (done) => {
+      var validPollData = { poll: { title: 'asd', responses: [ 'fdas', 'asdf' ] } }
 
-      this.request.post('/polls', { form: validPoll }, (error, response) => {
+      this.request.post('/polls', { form: validPollData }, (error, response) => {
         if (error) { done(error); }
 
         var pollCount = Object.keys(app.locals.polls).length;
         assert.equal(pollCount, 1, `Expected 1 poll, found ${pollCount}`);
+        done();
       })
     });
 

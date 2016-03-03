@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <% include ../partials/head %>
+</head>
+
+<header>
+  <% include ../partials/header %>
+</header>
+
+<main>
+    <body class="center">
+      <h1>Your Poll</h1>
+      <h3><%= poll.question %></h3>
+      <a href='polls/<%= poll.id %>'>
+        Link to User Poll
+      </a>
+    </body>
+    <footer>
+    </footer>
+  </main>
+
+
+</html>
