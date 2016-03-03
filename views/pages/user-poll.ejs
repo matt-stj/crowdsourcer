@@ -14,6 +14,12 @@
 
       <h4>Poll Title: <%= poll.title %></h4>
       <h5>Question: <%= poll.question %></h5>
+
+    <div class="container">
+      <% if (!poll.isPrivate) {%>
+        <% include ../partials/poll-results %>
+      <% } %>
+    </div>
     </body>
   </main>
   <footer>

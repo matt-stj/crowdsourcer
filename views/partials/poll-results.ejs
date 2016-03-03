@@ -1,0 +1,18 @@
+<table class="striped centered">
+              <thead>
+                <tr>
+                    <th>Choice</th>
+                    <th>Count</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% for (var choice in poll.choices) {%>
+                  <% if (poll.choices.hasOwnProperty(choice)) {%>
+                    <tr>
+                      <td><%= choice %></td>
+                      <td><%= poll.choices[choice] %></td>
+                  <% } %>
+                <% } %>
+                    </tr>
+              </tbody>
+            </table>
