@@ -30,10 +30,17 @@ app.get('/', (request, response) => {
 });
 
 app.post('/polls', (request, response) => {
-  var data = request.body
-  var id = generateId();
+  var pollData = request.body.poll
 
-  console.log(data)
+  var id = generateId();
+  var title = pollData.title
+  var choices = {}
+  pollData.responses.forEach(function(response) {
+    choices[response] = 0
+  })
+
+  var newPoll = new Poll(id, title, choices, true)
+  console.log(newPoll)
   app.locals.polls[id] = request.body;
 
   response.redirect('/');
