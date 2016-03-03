@@ -38,7 +38,7 @@ app.get('/polls/:id', (request, response) => {
 app.get('/polls/:adminKey/:id', (request, response) => {
   var poll = app.locals.polls[request.params.id];
 
-  response.render('admin-poll', { poll: poll });
+  response.render('pages/admin-poll', { poll: poll });
 });
 
 app.post('/polls', (request, response) => {
