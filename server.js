@@ -52,8 +52,6 @@ app.post('/polls', (request, response) => {
   var expiration = pollData.expiration
   var isPrivate = pollData.isPrivate
 
-  console.log(isPrivate)
-
   pollData.responses.forEach(function(response) {
     choices[response] = 0
   })
