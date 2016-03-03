@@ -38,6 +38,21 @@
               <label for="poll[responses][]">Choice 2</label>
             </div>
           </div>
+            <div class="row">
+                <label for="poll[expiration]">Expires on (optional)</label>
+                <input type="date" name="poll[expiration]" class="datepicker">
+            </div>
+            <div class="row">
+            <div class="switch">
+              <label for="poll[isPrivate]">Should the results of this poll be hidden from users?</label><br>
+              <label>
+                No
+                <input type="checkbox" name="poll[isPrivate]" id="lever" value="true">
+                <span class="lever"></span>
+                Yes
+              </label>
+            </div>
+          </div>
           <button class="btn waves-effect waves-light" type="submit">Submit</button>
         </form>
       </div>
