@@ -22,18 +22,30 @@ app.set('view engine', 'ejs');
 
 app.locals.title = 'Crowdsourcer';
 app.locals.polls = {};
-var votes = {}
 
-// function countVotes(pollId, votes) {
-//   console.log("PollId in countVotes:" + pollId)
-//   // var poll = app.locals.polls[pollId]
-//   //
-//   // var pollCount = poll.choices
-//   //
-//   // for (var vote in votes) {
-//   //   pollCount[votes[vote]]++
-//   // }
-//   // return pollCount;
+// function countVotes(poll) {
+//
+//   console.log(poll)
+//   var pollCount = poll.choices
+//   console.log("voteChoices: " + poll.choices)
+//   for (var choice in poll.choices) {
+//     console.log(choice)
+//     // pollCount[votes[vote]]++
+//   }
+//   return pollCount;
+// }
+
+// function countVotes(votes) {
+// var voteCount = {
+//     A: 0,
+//     B: 0,
+//     C: 0,
+//     D: 0
+// };
+//   for (var vote in votes) {
+//     voteCount[votes[vote]]++
+//   }
+//   return voteCount;
 // }
 
 
@@ -86,14 +98,9 @@ io.on('connection', function (socket) {
       var vote = message.vote
 
       var poll = app.locals.polls[pollId]
-
-      console.log(poll.choices)
-      console.log(vote)
-      console.log(poll.choices[vote])
       poll.choices[vote]++
-      console.log(poll.choices)
 
-      // socket.emit('voteCount', countVotes(votes));
+      socket.emit('voteCount', poll);
     }
   });
 

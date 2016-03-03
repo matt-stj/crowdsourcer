@@ -4,6 +4,7 @@ var statusMessage = document.getElementById('status-message');
 var buttons = document.querySelectorAll('#choices button');
 var pathURL = window.location.pathname.split("/")
 var pollId = pathURL[pathURL.length - 1]
+var voteCount = document.getElementById('vote-count');
 
 
 for (var i = 0; i < buttons.length; i++) {
@@ -12,9 +13,14 @@ for (var i = 0; i < buttons.length; i++) {
   });
 }
 
-// socket.on('voteCount', function (pollId, votes) {
-//   console.log(pollId, votes);
-// });
+socket.on('voteCount', function (poll) {
+  var i = 1
+  for (var choice in poll.choices) {
+    $(`#${poll.id}-${i}`).text(`${poll.choices[choice]}`)
+    console.log(poll.choices[choice])
+    i++
+};
+});
 
 socket.on('statusMessage', function (message) {
   statusMessage.innerText = message;

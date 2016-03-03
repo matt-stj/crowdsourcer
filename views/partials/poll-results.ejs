@@ -6,11 +6,13 @@
                 </tr>
               </thead>
               <tbody>
+                <% var i = 1 %>
                 <% for (var choice in poll.choices) {%>
                   <% if (poll.choices.hasOwnProperty(choice)) {%>
                     <tr>
                       <td><%= choice %></td>
-                      <td><%= poll.choices[choice] %></td>
+                      <td id="<%= poll.id %>-<%= i %>"><%= poll.choices[choice] %></td>
+                    <% i++ %>
                   <% } %>
                 <% } %>
                     </tr>
