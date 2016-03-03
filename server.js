@@ -8,7 +8,7 @@ const socketIo = require('socket.io');
 
 const path = require('path');
 
-app.use(express.static('static'));
+app.use(express.static('public'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
