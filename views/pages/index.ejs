@@ -16,20 +16,20 @@
         <form action="/polls" method="POST" name="poll" class="col s6 offset-s3">
           <div class="row">
             <div class="input-field col s12">
-              <input name="poll-title" id="poll-title" type="text">
-              <label for="poll-title">Poll title</label>
+              <input name="poll[title]" id="poll-title" type="text">
+              <label for="poll[title]">Poll title</label>
             </div>
           </div>
           <div class="row">
             <div class="input-field col s12">
-              <input name="choice-1" id="choice-1" type="text" >
-              <label for="choice-1">Choice 1</label>
+              <input name="poll[responses][]" id="choice1" type="text" >
+              <label for="poll[responses][]">Choice 1</label>
             </div>
           </div>
           <div class="row">
             <div class="input-field col s12">
-              <input name="choice-2" id="choice-2" type="text">
-              <label for="choice-2">Choice 2</label>
+              <input name="poll[responses][]" id="choice2" type="text">
+              <label for="poll[responses][]">Choice 2</label>
             </div>
           </div>
           <button class="btn waves-effect waves-light" type="submit">Submit</button>
