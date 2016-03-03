@@ -40,8 +40,9 @@ app.post('/polls', (request, response) => {
   })
 
   var newPoll = new Poll(id, title, choices, true)
-  console.log(newPoll)
-  app.locals.polls[id] = request.body;
+  app.locals.polls[newPoll.id] = newPoll
+
+  console.log(app.locals.polls)
 
   response.redirect('/');
 });
