@@ -29,19 +29,29 @@ app.get('/', (request, response) => {
   response.render('pages/index');
 });
 
+app.get('/polls/:id', (request, response) => {
+  var poll = app.locals.polls[request.params.id];
+
+  response.render('user-poll', { poll: poll });
+});
+
 app.post('/polls', (request, response) => {
   var pollData = request.body.poll
 
-  var id = generateId();
+  var adminKey = generateId(5);
+  var id = generateId(10);
   var title = pollData.title
+  var question = pollData.question
   var choices = {}
+
   pollData.responses.forEach(function(response) {
     choices[response] = 0
   })
 
-  var newPoll = new Poll(id, title, choices, true)
+  var newPoll = new Poll(id, title, question, choices, true)
   app.locals.polls[newPoll.id] = newPoll
 
+  console.log(newPoll)
   response.redirect('/');
 });
 
