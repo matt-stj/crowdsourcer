@@ -23,11 +23,14 @@
         <% include ../partials/poll-results %>
       </div>
         <br>
+      <div id="admin-closing">
+
         <% if (poll.expiration) { %>
           <h5>Expires: <%= poll.expiration %></h5>
         <% } %>
         <br>
       <button type="button" name="end-poll" id="end-poll" class="btn red darken-2">End Poll</button>
+    </div>
       <br><br>
       <% include ../partials/scripts %>
     </body>

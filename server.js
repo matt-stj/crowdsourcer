@@ -95,25 +95,19 @@ io.on('connection', function (socket) {
 
   socket.emit('statusMessage', 'You have connected.');
 
-
   socket.on('message', function (channel, message) {
-    if (channel === 'voteCast') {
-      var pollId = message.pollId
-      var vote = message.vote
+    var pollId = message.pollId
+    var vote = message.vote
+    var poll = app.locals.polls[pollId]
 
-      var poll = app.locals.polls[pollId]
+    if (channel === `voteCast-${pollId}`) {
       poll.choices[vote]++
-
-      io.sockets.emit('voteCount', poll);
+      io.sockets.emit(`voteCount-${pollId}`, poll);
     }
 
-    if (channel === 'endPoll') {
-      var pollId = message.pollId
-      var poll = app.locals.polls[pollId]
-
-      console.log(poll)
+    if (channel === `endPoll-${pollId}`) {
       poll.isActive = false;
-      console.log(poll)
+      io.sockets.emit(`pollClosed-${pollId}`)
     }
   });
 
