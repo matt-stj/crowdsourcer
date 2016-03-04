@@ -26,6 +26,7 @@
     "body-parser": "^1.15.0",
     "ejs": "^2.4.1",
     "express": "^4.13.4",
+    "locus": "^1.2.0",
     "lodash": "^4.6.1",
     "material-timepicker": "^0.1.2",
     "moment": "^2.11.2",

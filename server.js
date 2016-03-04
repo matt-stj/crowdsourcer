@@ -1,3 +1,4 @@
+const locus = require('locus')
 const http = require('http');
 const express = require('express');
 const app = express();
@@ -23,32 +24,6 @@ app.set('view engine', 'ejs');
 
 app.locals.title = 'Crowdsourcer';
 app.locals.polls = {};
-
-// function countVotes(poll) {
-//
-//   console.log(poll)
-//   var pollCount = poll.choices
-//   console.log("voteChoices: " + poll.choices)
-//   for (var choice in poll.choices) {
-//     console.log(choice)
-//     // pollCount[votes[vote]]++
-//   }
-//   return pollCount;
-// }
-
-// function countVotes(votes) {
-// var voteCount = {
-//     A: 0,
-//     B: 0,
-//     C: 0,
-//     D: 0
-// };
-//   for (var vote in votes) {
-//     voteCount[votes[vote]]++
-//   }
-//   return voteCount;
-// }
-
 
 app.get('/', (request, response) => {
   response.render('pages/index');
