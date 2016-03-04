@@ -62,7 +62,10 @@ app.get('/polls/:id', (request, response) => {
 app.get('/polls/:adminKey/:id', (request, response) => {
   var poll = app.locals.polls[request.params.id];
 
-  response.render('pages/admin-poll', { poll: poll });
+  if(request.params.adminKey != poll.adminKey) {
+    response.render('pages/index')
+  }
+    response.render('pages/admin-poll', { poll: poll });
 });
 
 app.post('/polls', (request, response) => {
