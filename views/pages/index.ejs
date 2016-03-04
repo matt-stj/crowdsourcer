@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <% include ../partials/head %>
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-timepicker/1.8.9/jquery.timepicker.css"/ >
 </head>
 
 <header>
@@ -11,7 +12,7 @@
 <main>
     <body class="center">
       <h1>Create a Poll</h1>
-    
+
       <div class="container">
           <div class="row">
         <form action="/polls" method="POST" name="poll" class="col s6 offset-s3">
@@ -47,7 +48,7 @@
         <br>
             <div class="row">
                 <input type="date" name="poll[expiration]" class="datepicker">
-                <label for="poll[expiration]">Expires on (optional)</label>
+<input id="basicExample" type="text" class="time ui-timepicker-input" autocomplete="off">                <label for="poll[expiration]">Expires on (optional)</label>
             </div>
             <br>
             <div class="row">
@@ -66,13 +67,18 @@
         </form>
       </div>
     </div>
-    <% include ../partials/scripts %>
+      <% include ../partials/scripts %>
+
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-timepicker/1.8.9/jquery.timepicker.js"></script>
     </body>
     <br><br>
   </main>
   <footer>
     <% include ../partials/footer %>
     <script type="text/javascript">
+    $( document ).ready(function() {
+      $('#basicExample').timepicker();
+    });
     var i = 3
       function addItem(){
         $('.responses').append(
@@ -84,7 +90,6 @@
           </div>`
         )
         i++
-        console.log(i)
       }
     </script>
   </footer>

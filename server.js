@@ -91,10 +91,6 @@ app.post('/polls', (request, response) => {
 });
 
 io.on('connection', function (socket) {
-  console.log('A user has connected.', io.engine.clientsCount);
-
-  socket.emit('statusMessage', 'You have connected.');
-
   socket.on('message', function (channel, message) {
     var pollId = message.pollId
     var vote = message.vote
@@ -111,9 +107,6 @@ io.on('connection', function (socket) {
     }
   });
 
-  socket.on('disconnect', function () {
-    console.log('A user has disconnected.', io.engine.clientsCount);
-  });
 });
 
 if (!module.parent) {
