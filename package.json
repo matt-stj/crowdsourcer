@@ -27,6 +27,7 @@
     "ejs": "^2.4.1",
     "express": "^4.13.4",
     "lodash": "^4.6.1",
+    "material-timepicker": "^0.1.2",
     "socket.io": "^1.4.5"
   },
   "devDependencies": {

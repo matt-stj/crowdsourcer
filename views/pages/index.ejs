@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <% include ../partials/head %>
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-timepicker/1.8.9/jquery.timepicker.css"/ >
+  <% include ../partials/head %>
 </head>
 
 <header>
@@ -47,8 +47,14 @@
         </button>
         <br>
             <div class="row">
-                <input type="date" name="poll[expiration]" class="datepicker">
-<input id="basicExample" type="text" class="time ui-timepicker-input" autocomplete="off">                <label for="poll[expiration]">Expires on (optional)</label>
+              <div class="col s6">
+                <label for="poll[expiration]">Expires on (optional)</label>
+                <input type="date" name="poll[expiration]" class="datepicker center center-align">
+              </div>
+              <div class="col s6">
+                <label for="poll[expiration]">Expires at (optional)</label>
+                <input id="timePicker" type="text" class="time ui-timepicker-input center center-align">
+              </div>
             </div>
             <br>
             <div class="row">
@@ -77,19 +83,19 @@
     <% include ../partials/footer %>
     <script type="text/javascript">
     $( document ).ready(function() {
-      $('#basicExample').timepicker();
+      $('#timePicker').timepicker({ 'scrollDefault': 'now' });
     });
-    var i = 3
+    var choiceNumber = 3
       function addItem(){
         $('.responses').append(
           `<div class="row">
             <div class="input-field col s12">
-              <input name="poll[responses][]" id="choice${i}" type="text">
-              <label for="poll[responses][]">Choice ${i}</label>
+              <input name="poll[responses][]" id="choice${choiceNumber}" type="text">
+              <label for="poll[responses][]">Choice ${choiceNumber}</label>
             </div>
           </div>`
         )
-        i++
+        choiceNumber++
       }
     </script>
   </footer>
