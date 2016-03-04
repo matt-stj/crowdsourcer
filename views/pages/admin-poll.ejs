@@ -25,8 +25,8 @@
         <br>
       <div id="admin-closing">
 
-        <% if (poll.expiration) { %>
-          <h5>Expires: <%= poll.expiration %></h5>
+        <% if (poll.fullExpiration) { %>
+          <h5>Expires: <%= poll.fullExpiration %></h5>
         <% } %>
         <br>
       <button type="button" name="end-poll" id="end-poll" class="btn red darken-2">End Poll</button>

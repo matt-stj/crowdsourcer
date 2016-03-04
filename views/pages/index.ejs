@@ -49,7 +49,7 @@
             <div class="row">
               <div class="col s6">
                 <label for="poll[expiresOn]">Expires on (optional)</label>
-                <input type="date" name="poll[expiresOn]" class="datepicker center center-align">
+                <input type="date" name="poll[expiresOn]" id="datePicker" class="datepicker center center-align">
               </div>
               <div class="col s6">
                 <label for="poll[expiresAt]">Expires at (optional)</label>
@@ -84,6 +84,7 @@
     <script type="text/javascript">
     $( document ).ready(function() {
       $('#timePicker').timepicker({ 'scrollDefault': 'now' });
+      $('#datepicker').pickadate()
     });
     var choiceNumber = 3
       function addItem(){
@@ -97,6 +98,15 @@
         )
         choiceNumber++
       }
+      // var input = document.getElementById('myInput');
+      //
+      // $('form').submit(function(){
+      //     var input = $('#datePicker').val();
+      //     if(input == ''){
+      //          $('#datePicker').val("yyyy-MM-dd");
+      //     }
+      // });
+
     </script>
   </footer>
 

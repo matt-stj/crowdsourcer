@@ -52,15 +52,17 @@ app.post('/polls', (request, response) => {
   var title = pollData.title
   var question = pollData.question
   var choices = {}
-  var expiration = pollData.expiration
+  var expiresOn = pollData.expiresOn
+  var expiresAt = pollData.expiresAt
   var isPrivate = pollData.isPrivate
 
   pollData.responses.forEach(function(response) {
     choices[response] = 0
   })
 
-  var newPoll = new Poll(id, adminKey, title, question, choices, expiration, isPrivate)
-
+  var newPoll = new Poll(id, adminKey, title, question, choices, expiresOn, expiresAt, isPrivate)
+  console.log(newPoll)
+  eval(locus)
   app.locals.polls[newPoll.id] = newPoll
 
   response.render('pages/admin-links', { poll: newPoll });
