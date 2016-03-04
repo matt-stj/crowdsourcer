@@ -95,6 +95,7 @@ io.on('connection', function (socket) {
 
   socket.emit('statusMessage', 'You have connected.');
 
+
   socket.on('message', function (channel, message) {
     if (channel === 'voteCast') {
       var pollId = message.pollId
@@ -104,6 +105,15 @@ io.on('connection', function (socket) {
       poll.choices[vote]++
 
       io.sockets.emit('voteCount', poll);
+    }
+
+    if (channel === 'endPoll') {
+      var pollId = message.pollId
+      var poll = app.locals.polls[pollId]
+
+      console.log(poll)
+      poll.isActive = false;
+      console.log(poll)
     }
   });
 

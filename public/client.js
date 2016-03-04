@@ -24,3 +24,7 @@ socket.on('voteCount', function (poll) {
 socket.on('statusMessage', function (message) {
   statusMessage.innerText = message;
 });
+
+$('#end-poll').on('click', function() {
+  socket.send('endPoll', { pollId: pollId });
+})
