@@ -113,9 +113,11 @@ describe('Server', () => {
           });
         });
       });
+    });
 
     describe('GET /polls/:adminKey/:id', (done) => {
-      it('should work', (done) => {
+
+      it('should return an admin poll page with the proper admin key', (done) => {
         this.request.post('/polls', { form: validPollData }, (error, response) => {
           if (error) { done(error); }
 
@@ -132,9 +134,25 @@ describe('Server', () => {
         });
       });
 
+      it('should return 400 status if an improper admin key is submitted', (done) => {
+        this.request.post('/polls', { form: validPollData }, (error, response) => {
+          if (error) { done(error); }
+
+          var pollId = Object.keys(app.locals.polls)[0];
+          var poll = app.locals.polls[pollId]
+
+          this.request.get(`/polls/wrongkey/${poll.id}`, (error, response) => {
+            if (error) { done(error); }
+            assert.equal(response.statusCode, 400);
+
+            done();
+          });
+
+        });
+      });
+
     });
 
 
-  });
 
 });

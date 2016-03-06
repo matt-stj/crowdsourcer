@@ -38,9 +38,8 @@ app.get('/polls/:id', (request, response) => {
 app.get('/polls/:adminKey/:id', (request, response) => {
   var poll = app.locals.polls[request.params.id];
 
-  if(request.params.adminKey != poll.adminKey) {
-    response.render('pages/index')
-  }
+  if (request.params.adminKey != poll.adminKey) { return response.sendStatus(400); }
+
     response.render('pages/admin-poll', { poll: poll });
 });
 
