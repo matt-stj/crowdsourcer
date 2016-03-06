@@ -29,8 +29,6 @@ app.get('/', (request, response) => {
   response.render('pages/index');
 });
 
-console.log(moment().format('LLL'))
-
 app.get('/polls/:id', (request, response) => {
   var poll = app.locals.polls[request.params.id];
 
@@ -51,6 +49,8 @@ app.post('/polls', (request, response) => {
   var id = generateId(10);
 
   var pollData = request.body.poll
+  console.log(pollData)
+  console.log(pollData.title)
   var title = pollData.title
   var question = pollData.question
   var choices = {}
@@ -64,7 +64,6 @@ app.post('/polls', (request, response) => {
 
   var newPoll = new Poll(id, adminKey, title, question, choices, expiresOn, expiresAt, isPrivate)
   app.locals.polls[newPoll.id] = newPoll
-  console.log(newPoll)
   response.render('pages/admin-links', { poll: newPoll });
 });
 
