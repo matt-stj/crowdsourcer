@@ -86,11 +86,8 @@ describe('Server', () => {
         this.request.post('/polls', { form: validPollData }, (error, response) => {
           if (error) { done(error); }
 
-          var pollCount = Object.keys(app.locals.polls).length;
-          assert.equal(pollCount, 1, `Expected 1 poll, found ${pollCount}`);
-          done();
-
-          var poll = app.locals.polls[0]
+          var pollId = Object.keys(app.locals.polls)[0];
+          var poll = app.locals.polls[pollId]
 
           this.request.get(`/polls/${poll.id}`, (error, response) => {
             if (error) { done(error); }
@@ -102,15 +99,11 @@ describe('Server', () => {
 
 
       it('should return the proper poll', (done) => {
-
         this.request.post('/polls', { form: validPollData }, (error, response) => {
           if (error) { done(error); }
 
-          var pollCount = Object.keys(app.locals.polls).length;
-          assert.equal(pollCount, 1, `Expected 1 poll, found ${pollCount}`);
-          done();
-
-          var poll = app.locals.polls[0]
+          var pollId = Object.keys(app.locals.polls)[0];
+          var poll = app.locals.polls[pollId]
 
           this.request.get(`/polls/${poll.id}`, (error, response) => {
             if (error) { done(error); }
@@ -120,7 +113,28 @@ describe('Server', () => {
           });
         });
       });
+
+    describe('GET /polls/:adminKey/:id', (done) => {
+      it('should work', (done) => {
+        this.request.post('/polls', { form: validPollData }, (error, response) => {
+          if (error) { done(error); }
+
+          var pollId = Object.keys(app.locals.polls)[0];
+          var poll = app.locals.polls[pollId]
+
+          this.request.get(`/polls/${poll.adminKey}/${poll.id}`, (error, response) => {
+            if (error) { done(error); }
+            assert(response.body.includes(poll.title),
+            `"${response.body}" does not include "${poll.title}".`);
+            done();
+          });
+
+        });
+      });
+
     });
 
 
   });
+
+});
