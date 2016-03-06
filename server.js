@@ -29,6 +29,8 @@ app.get('/', (request, response) => {
   response.render('pages/index');
 });
 
+console.log(moment().format('LLL'))
+
 app.get('/polls/:id', (request, response) => {
   var poll = app.locals.polls[request.params.id];
 
@@ -75,13 +77,24 @@ io.on('connection', function (socket) {
     if (channel === `voteCast-${pollId}`) {
       poll.choices[vote]++
       io.sockets.emit(`voteCount-${pollId}`, poll);
+
+      if (poll.fullExpiration) {
+          var jsTime = moment(poll.fullExpiration).format('x');
+          var jsCompleteTime = jsTime - moment().format('x');
+          setTimeout(function(){
+            poll.isActive = false;
+            console.log('hi')
+          }, jsCompleteTime);
+        }
     }
 
     if (channel === `endPoll-${pollId}`) {
       poll.isActive = false;
       io.sockets.emit(`pollClosed-${pollId}`)
     }
+
   });
+
 
 });
 
