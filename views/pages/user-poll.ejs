@@ -17,6 +17,7 @@
 
       <h5>Choices:</h5>
 
+      <% if (poll.isActive) { %>
       <div id="choices">
         <% for (var choice in poll.choices) {%>
           <% if (poll.choices.hasOwnProperty(choice)) {%>
@@ -26,6 +27,9 @@
           <% } %>
         <% } %>
       </div>
+    <%} else { %>
+      <h5>Voting has been closed for this poll</h5>
+    <% } %>
 
       <div id="vote-count">
 

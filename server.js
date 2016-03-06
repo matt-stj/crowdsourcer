@@ -80,11 +80,11 @@ io.on('connection', function (socket) {
 
       if (poll.fullExpiration) {
           var jsTime = moment(poll.fullExpiration).format('x');
-          var jsCompleteTime = jsTime - moment().format('x');
+          var millisecondsUntilClose = jsTime - moment().format('x');
           setTimeout(function(){
             poll.isActive = false;
-            console.log('hi')
-          }, jsCompleteTime);
+            io.sockets.emit(`pollClosed-${pollId}`)
+          }, millisecondsUntilClose);
         }
     }
 

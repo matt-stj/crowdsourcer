@@ -29,7 +29,13 @@
           <h5>Expires: <%= poll.fullExpiration %></h5>
         <% } %>
         <br>
-      <button type="button" name="end-poll" id="end-poll" class="btn red darken-2">End Poll</button>
+
+        <% if (poll.isActive) { %>
+          <button type="button" name="end-poll" id="end-poll" class="btn red darken-2">End Poll</button>
+        <% } else { %>
+          <h3>This poll has been closed.</h3>
+        <% } %>
+
     </div>
       <br><br>
       <% include ../partials/scripts %>
