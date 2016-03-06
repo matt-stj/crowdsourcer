@@ -76,6 +76,7 @@ io.on('connection', function (socket) {
 
     if (channel === `voteCast-${pollId}`) {
       poll.choices[vote]++
+      socket.emit('userVote', vote)
       io.sockets.emit(`voteCount-${pollId}`, poll);
 
       if (poll.fullExpiration) {

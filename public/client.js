@@ -5,8 +5,10 @@ var buttons = document.querySelectorAll('#choices button');
 var pathURL = window.location.pathname.split("/")
 var pollId = pathURL[pathURL.length - 1]
 var voteCount = document.getElementById('vote-count');
+var userVote = document.getElementById('user-vote');
 var $choices = $('#choices')
 var $adminClosing = $('#admin-closing')
+
 
 
 for (var i = 0; i < buttons.length; i++) {
@@ -22,6 +24,12 @@ socket.on(`voteCount-${pollId}`, function (poll) {
     i++
 };
 });
+
+socket.on('userVote', function (vote) {
+  $choices.children().remove()
+  userVote.innerText = 'You voted for: ' + vote
+  
+})
 
 socket.on('statusMessage', function (message) {
   statusMessage.innerText = message;
