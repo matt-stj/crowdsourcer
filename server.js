@@ -49,8 +49,6 @@ app.post('/polls', (request, response) => {
   var id = generateId(10);
 
   var pollData = request.body.poll
-  console.log(pollData)
-  console.log(pollData.title)
   var title = pollData.title
   var question = pollData.question
   var choices = {}
