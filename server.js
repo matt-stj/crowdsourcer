@@ -60,7 +60,6 @@ app.post('/polls', (request, response) => {
   })
 
   var newPoll = new Poll(id, adminKey, title, question, choices, expiresOn, expiresAt, isPrivate)
-  console.log(newPoll)
   app.locals.polls[newPoll.id] = newPoll
   response.render('pages/admin-links', { poll: newPoll });
 });
