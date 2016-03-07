@@ -65,6 +65,7 @@ app.post('/polls', (request, response) => {
 });
 
 io.on('connection', function (socket) {
+
   socket.on('message', function (channel, message) {
     var pollId = message.pollId
     var vote = message.vote
