@@ -1,4 +1,5 @@
 const assert = require('assert');
+const moment = require('moment');
 const app = require('../server');
 const Poll = require('../lib/poll');
 
@@ -54,7 +55,7 @@ describe('Poll', () => {
 
   it('sets an expiration for today if only a time is specified', () => {
     var poll = new Poll(123, 456, 'title', 'question', 'a', '', '11:59');
-    assert.equal('March 7, 2016 11:59 AM', poll.fullExpiration)
+    assert.equal(moment().format('LL') + ' 11:59 AM', poll.fullExpiration)
   });
 
   it('sets an expiration 11:59PM if only a date is specified', () => {
