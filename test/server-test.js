@@ -126,7 +126,9 @@ describe('Server', () => {
 
           this.request.get(`/polls/${poll.adminKey}/${poll.id}`, (error, response) => {
             if (error) { done(error); }
-            assert(response.body.includes(poll.title),
+            assert(response.body.includes("Admin Poll Page"),
+            `"${response.body}" does not include Admin Poll Page.`);
+            assert(response.body.includes(`${poll.title}`),
             `"${response.body}" does not include "${poll.title}".`);
             done();
           });
